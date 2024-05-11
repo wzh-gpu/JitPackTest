@@ -56,7 +56,7 @@ afterEvaluate {
     publishing {
         publications {
             // Creates a Maven publication called "release".
-            create<MavenPublication>("release") {
+ /*           create<MavenPublication>("release") {
                 // Applies the component for the release build variant.\
                 // from(components["release"])
                 // You can then customize attributes of the publication as shown below.
@@ -64,18 +64,63 @@ afterEvaluate {
                 artifactId = "deptrumSDK"
                 version = version
 
-            }
+            }*/
+            create<MavenPublication>("aarDeptrumSDK") {
+                groupId = group.toString()
+                artifactId = "deptrumsdk"
+                version = version
 
+                afterEvaluate {
+                    // 指定 AAR 文件的路径
+                    artifact("${projectDir}/libs/deptrumSDK.aar")
+                }
+
+            }
             create<MavenPublication>("aarFaceSDK") {
                 groupId = group.toString()
                 artifactId = "facesdk"
-                version = "1.0.0"
+                version = version
 
                 afterEvaluate {
                     // 指定 AAR 文件的路径
                     artifact("${projectDir}/libs/FaceSDK_8.1_20230216-release.aar")
                 }
+
             }
+            create<MavenPublication>("aarImiSDK") {
+                groupId = group.toString()
+                artifactId = "imisdk"
+                version = version
+
+                afterEvaluate {
+                    // 指定 AAR 文件的路径
+                    artifact("${projectDir}/libs/ImiSDK.aar")
+                }
+
+            }
+            create<MavenPublication>("aarOpenCv") {
+                groupId = group.toString()
+                artifactId = "opencv"
+                version = version
+
+                afterEvaluate {
+                    // 指定 AAR 文件的路径
+                    artifact("${projectDir}/libs/opencv.aar")
+                }
+
+            }
+            create<MavenPublication>("aarOrbbecModule") {
+                groupId = group.toString()
+                artifactId = "orbbec"
+                version = version
+
+                afterEvaluate {
+                    // 指定 AAR 文件的路径
+                    artifact("${projectDir}/libs/orbbec_module-debug.aar")
+                }
+
+            }
+
         }
 
 
